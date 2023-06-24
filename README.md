@@ -41,4 +41,4 @@ Create a command-line tool that accepts a city's name and returns the weather fo
 - The main function is protected by a try-except clause that will catch the error and display the error message.
 
 ## Innovation and Creativity
-- We have tried keeping the user in mind while making the forecase tool.
+- We have tried keeping the user in mind while making the forecast tool.
