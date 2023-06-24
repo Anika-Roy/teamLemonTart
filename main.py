@@ -20,6 +20,10 @@ def main():
     else:
         print("error : ", city_name["message"])
 
+    forecast_json = server.handle_forecast5_api.get_lat_lon_forecast(city_name["city_name"], API_KEY)
+
+    print("forecast : ", forecast_json)
+
 # # Get the forecast for the city
 # city_name = "Zocca"
 # forecast_json = server.handle_forecast5_api.get_lat_lon_forecast(city_name, API_KEY)
