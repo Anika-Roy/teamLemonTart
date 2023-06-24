@@ -5,37 +5,51 @@ import server.handle_forecast5_api
 import frontend.interactive_calendar_cli
 import frontend.city_name_choose_cli
 
+# Import utilities
+import utils.epoch_handlers
+
 # Loading the dotenv configuration
 from dotenv import load_dotenv
 load_dotenv()
+
+# Import datetime
+import datetime
 
 # Setting the API_KEY form the dotenv file
 import os
 API_KEY = os.getenv("OPENWEATHERMAP_API_KEY")
 
+# TODO : Add error checks everywhere
 def main():
+    # Ask the user for the city name
     city_name=frontend.city_name_choose_cli.return_city_name()
-    if city_name["error"] == False:
-        print("city_name : ", city_name["city_name"])
-    else:
-        print("error : ", city_name["message"])
+    
+    # Checking if the city_name is valid
+    if city_name["error"]:
+        print(city_name["message"])
+        return
 
+    # API call to get the forecast
     forecast_json = server.handle_forecast5_api.get_lat_lon_forecast(city_name["city_name"], API_KEY)
 
-    print("forecast : ", forecast_json)
+    # Checking if the forecast is valid
+    # if forecast_json["cod"] != 200:
+    #     print("Error with OpenWeatherMap API : ", forecast_json["message"])
+    #     return
 
-# # Get the forecast for the city
-# city_name = "Zocca"
-# forecast_json = server.handle_forecast5_api.get_lat_lon_forecast(city_name, API_KEY)
+    # Get the epochs from the forecast
+    epochs = server.handle_forecast5_api.get_epochs_from_forecast(forecast_json)
 
-# print("forecast : ", forecast_json)
+    # Get datetime from every epoch
+    unique_date_epochs = utils.epoch_handlers.get_unique_date_epoch(epochs)
 
-# # Get the epochs from the forecast
-# epochs = server.handle_forecast5_api.get_epochs_from_forecast(forecast_json)
+    # Send the datetime to the calendar handler and get the date
+    selected_date = frontend.interactive_calendar_cli.get_user_input_calendar(unique_date_epochs, None)
 
-# # Get the calendar from the epochs
-# calendar = frontend.interactive_calendar_cli.get_calendar_from_epochs(epochs, None)
+    # Get all epochs for the selected date
+    selected_date_epochs = utils.epoch_handlers.get_epochs_with_date(epochs, selected_date)
 
-# # Print the calendar
-# print(calendar['calendar'])
-main()
+    print(selected_date_epochs)
+
+if __name__ == "__main__":
+    main()

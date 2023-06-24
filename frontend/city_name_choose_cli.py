@@ -27,7 +27,7 @@ def return_city_name():
         string: The name of the city
     """
 
-    # # Create a PromptSession with the custom completer
+    # Create a PromptSession with the custom completer
     session = PromptSession(completer=MyCompleter())
 
     # Getting the city name from the user
