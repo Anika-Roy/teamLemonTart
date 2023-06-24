@@ -54,6 +54,9 @@ CITY_LIST = [
     "São Paulo",
     "Shanghai"
 ]
+WIND_DIRECTION = [
+    "↓", "↙", "←", "↖", "↑", "↗", "→", "↘",
+]
 
 # # List of cities supported by OpenWeatherAPI and their names
 # CITY_LIST = [
