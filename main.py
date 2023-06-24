@@ -53,7 +53,7 @@ def main():
 
     # Ask the user for the time
     selected_time = frontend.choose_time_cli.ask_for_preferred_time(selected_date_epochs)
-
+    # print(selected_time)
     # Display the final weather forecast
     display_forecast_cli.display_weather_forecast_final(selected_time, forecast_json)
 

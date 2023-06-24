@@ -1,5 +1,5 @@
 # Import the WEATHER_SYMBOL map from constant.py
-from frontend_symbols import WEATHER_SYMBOL, ICON_CODE_MAPPING
+from frontend.frontend_symbols import WEATHER_SYMBOL, ICON_CODE_MAPPING
 
 def get_weather_symbol(weather_icon : int):
     """
