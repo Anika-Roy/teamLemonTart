@@ -4,7 +4,9 @@
 - [Ujjwal Shekhar](https://www.linkedin.com/in/ujjwal-shekhar-iiith/)
 
 ## Short Demo:)
-https://github.com/Fastest-Coder-First/teamLemonTart/assets/102136135/186f88f8-b7d8-49ab-804f-25ba7560547b
+
+https://github.com/Fastest-Coder-First/teamLemonTart/assets/102136135/df98a72d-b6ad-457e-a2b1-c1ce6a63b254
+
 
 ## Problem Statement
 Create a command-line tool that accepts a city's name and returns the weather forecast. Leverage Open Weather Map API to get the weather forecast.
