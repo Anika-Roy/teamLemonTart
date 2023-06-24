@@ -195,11 +195,11 @@ def get_lat_lon_forecast(city_name, API_KEY):
     API_CALL = "http://api.openweathermap.org/data/2.5/forecast?q={}&appid={}"
 
     # Making the API call
-    # response = requests.get(API_CALL.format(city_name, API_KEY))
-    response = (sample_res_json)
+    response = requests.get(API_CALL.format(city_name, API_KEY))
+    # response = (sample_res_json)
 
     # Returning the response JSON
-    return response
+    return response.json()
 
 # Get forecast epochs
 def get_epochs_from_forecast(api_res_json):

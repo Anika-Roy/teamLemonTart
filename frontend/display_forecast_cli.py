@@ -56,9 +56,14 @@ def display_weather_forecast_final(epoch : int, forecast_json):
     Returns:
         None
     """
+    # Get the entry in the forecast_json for the given epoch
+    for entry in forecast_json["list"]:
+        if entry["dt"] == epoch:
+            forecast_json = entry
+            break
 
     # Get the symbol to display
-    final_symbol = get_weather_symbol(input["weather"][0]["icon"])["weather_symbol"]
+    final_symbol = get_weather_symbol(forecast_json["weather"][0]["icon"])["weather_symbol"]
 
     # Get the weather symbol
     weather_info = [
