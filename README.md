@@ -17,4 +17,4 @@ Create a command-line tool that accepts a city's name and returns the weather fo
 
 - CLI has an autocomplete feature to get the city name.
 [TBX: Add a small gif]
-- CLI has an interactive interface to
+- CLI has an interactive interface to select the ate 
