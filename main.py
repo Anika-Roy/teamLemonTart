@@ -4,6 +4,8 @@ import server.handle_forecast5_api
 # Import the CLI handler
 import frontend.interactive_calendar_cli
 import frontend.city_name_choose_cli
+import frontend.choose_time_cli
+import frontend.display_forecast_cli
 
 # Import utilities
 import utils.epoch_handlers
@@ -49,7 +51,11 @@ def main():
     # Get all epochs for the selected date
     selected_date_epochs = utils.epoch_handlers.get_epochs_with_date(epochs, selected_date)
 
-    print(selected_date_epochs)
+    # Ask the user for the time
+    selected_time = frontend.choose_time_cli.ask_for_preferred_time(selected_date_epochs)
+
+    # Display the final weather forecast
+    display_forecast_cli.display_weather_forecast_final(selected_time, forecast_json)
 
 if __name__ == "__main__":
     main()

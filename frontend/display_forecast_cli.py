@@ -46,3 +46,29 @@ def get_weather_symbol(weather_icon : int):
     # Returning the weather symbol
     return json_to_return
 
+def display_weather_forecast_final(epoch : int, forecast_json):
+    """
+    Displays the weather forecast for the given epoch
+
+    Arguments:
+        epoch (int): The epoch for which the weather forecast is to be displayed
+        forecast_json (json): The json containing the weather forecast
+    Returns:
+        None
+    """
+
+    # Get the symbol to display
+    final_symbol = get_weather_symbol(input["weather"][0]["icon"])["weather_symbol"]
+
+    # Get the weather symbol
+    weather_info = [
+        f"{forecast_json['weather'][0]['main']} -- {forecast_json['weather'][0]['description']}",
+        f"{forecast_json['main']['temp_min']} °C- {forecast_json['main']['temp_max']} °C",
+        f"{forecast_json['wind']['speed']} km/hr {forecast_json['wind']['deg']}°",
+        f"{forecast_json['main']['humidity']}% humidity",
+        f"Chances of rain: {forecast_json['pop']}",
+    ]
+
+    # Printing the output
+    for line_art, line_info in zip(final_symbol, weather_info):
+        print(f"{line_art}   {line_info}")
