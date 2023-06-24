@@ -3,6 +3,7 @@ import server.handle_forecast5_api
 
 # Import the CLI handler
 import frontend.interactive_calendar_cli
+import frontend.city_name_choose_cli
 
 # Loading the dotenv configuration
 from dotenv import load_dotenv
@@ -13,7 +14,11 @@ import os
 API_KEY = os.getenv("OPENWEATHERMAP_API_KEY")
 
 def main():
-    
+    city_name=frontend.city_name_choose_cli.return_city_name()
+    if city_name["error"] == False:
+        print("city_name : ", city_name["city_name"])
+    else:
+        print("error : ", city_name["message"])
 
 # # Get the forecast for the city
 # city_name = "Zocca"
@@ -29,3 +34,4 @@ def main():
 
 # # Print the calendar
 # print(calendar['calendar'])
+main()
