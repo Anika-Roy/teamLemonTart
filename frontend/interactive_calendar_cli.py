@@ -90,9 +90,11 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         int: The epoch selected by the user.
     """
 
+    shift_cursor_position(lines_up=0, lines_down=1)
     click.echo("Please press the arrow keys to navigate the calendar.")
     click.echo("Press 's' to Select and move forward.")
 
+    shift_cursor_position(lines_up=0, lines_down=2)
 
     # Set the highlight_epoch to first epoch if it is None
     if highlight_epoch == None:
@@ -128,7 +130,7 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         #     return next_epoch
         
         # Refresh the calendar
-        shift_cursor_position(lines_up=11, lines_down=0)
+        shift_cursor_position(lines_up=14, lines_down=0)
         return get_user_input_calendar(epochs, next_epoch)
     
     # Check if the user wants to go to the previous epoch
@@ -142,7 +144,7 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         #     return previous_epoch
         
         # Refresh the calendar
-        shift_cursor_position(lines_up=11, lines_down=0)
+        shift_cursor_position(lines_up=14, lines_down=0)
         return get_user_input_calendar(epochs, previous_epoch)
     
 def get_normal_user_input(epochs : list, highlight_epoch : int):
