@@ -5,12 +5,21 @@ import click
 import utils.epoch_handlers
 import time
 
-def shift_cursor_position(lines_up, lines_down):
-    # ANSI escape sequence to move cursor up or down
-    if lines_up > 0:
-        print("\033[{}A".format(lines_up), end='')
-    elif lines_down > 0:
-        print("\033[{}B".format(lines_down), end='')
+def shift_cursor_position(up=0, down=0, left=0, right=0):
+    # ANSI escape sequence to move cursor
+    sequence = ""
+    
+    if up > 0:
+        sequence += "\033[{}A".format(up)
+    elif down > 0:
+        sequence += "\033[{}B".format(down)
+    
+    if left > 0:
+        sequence += "\033[{}D".format(left)
+    elif right > 0:
+        sequence += "\033[{}C".format(right)
+    
+    print(sequence, end='')
 
 def get_calendar_from_epochs(epochs : list, highlight_epoch : int):
     """
@@ -90,11 +99,11 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         int: The epoch selected by the user.
     """
 
-    shift_cursor_position(lines_up=0, lines_down=1)
+    shift_cursor_position(up=0, down=1, left=0, right=0)
     click.echo("Please press the arrow keys to navigate the calendar.")
     click.echo("Press 's' to Select and move forward.")
 
-    shift_cursor_position(lines_up=0, lines_down=2)
+    shift_cursor_position(up=0, down=2, left=0, right=0)
 
     # Set the highlight_epoch to first epoch if it is None
     if highlight_epoch == None:
@@ -125,7 +134,7 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         next_epoch = utils.epoch_handlers.get_next_epoch(epochs, highlight_epoch)
 
         # Refresh the calendar
-        shift_cursor_position(lines_up=14, lines_down=0)
+        shift_cursor_position(up=14, down=0, left=0, right=0)
         return get_user_input_calendar(epochs, next_epoch)
     
     # Check if the user wants to go to the previous epoch
@@ -134,7 +143,7 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         previous_epoch = utils.epoch_handlers.get_previous_epoch(epochs, highlight_epoch)
 
         # Refresh the calendar
-        shift_cursor_position(lines_up=14, lines_down=0)
+        shift_cursor_position(up=14, down=0, left=0, right=0)
         return get_user_input_calendar(epochs, previous_epoch)
     
 def get_normal_user_input(epochs : list, highlight_epoch : int):
