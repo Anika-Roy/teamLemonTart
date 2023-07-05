@@ -3,6 +3,14 @@ import datetime
 import click
 
 import utils.epoch_handlers
+import time
+
+def shift_cursor_position(lines_up, lines_down):
+    # ANSI escape sequence to move cursor up or down
+    if lines_up > 0:
+        print("\033[{}A".format(lines_up), end='')
+    elif lines_down > 0:
+        print("\033[{}B".format(lines_down), end='')
 
 def get_calendar_from_epochs(epochs : list, highlight_epoch : int):
     """
@@ -67,7 +75,7 @@ def get_calendar_from_epochs(epochs : list, highlight_epoch : int):
 
 def get_user_input_calendar(epochs : list, highlight_epoch : int):
     """
-    Refresfes the terminal to display the calendar and highlights the 
+    Refreshes the terminal to display the calendar and highlights the 
     selected epoch. If the user clicks on the right arrow key (If present), 
     the calendar is refreshed to the epoch present after the highlighted
     epoch. If the user clicks on the left arrow key, the calendar is
@@ -84,6 +92,7 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
 
     click.echo("Please press the arrow keys to navigate the calendar.")
     click.echo("Press 's' to Select and move forward.")
+
 
     # Set the highlight_epoch to first epoch if it is None
     if highlight_epoch == None:
@@ -119,6 +128,7 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         #     return next_epoch
         
         # Refresh the calendar
+        shift_cursor_position(lines_up=11, lines_down=0)
         return get_user_input_calendar(epochs, next_epoch)
     
     # Check if the user wants to go to the previous epoch
@@ -132,6 +142,7 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         #     return previous_epoch
         
         # Refresh the calendar
+        shift_cursor_position(lines_up=11, lines_down=0)
         return get_user_input_calendar(epochs, previous_epoch)
     
 def get_normal_user_input(epochs : list, highlight_epoch : int):
