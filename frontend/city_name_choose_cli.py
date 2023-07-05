@@ -39,6 +39,6 @@ def return_city_name():
         return {"error": False, "city_name": city_name}
         
     else:
-        # Returning a json with error : True
-        return {"error": False, "message": "The city name is not in our database."}
+        # Returning a json with error : False
+        return {"error": False, "city_name": city_name}
     

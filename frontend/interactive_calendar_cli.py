@@ -124,11 +124,6 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         # Get the next epoch
         next_epoch = utils.epoch_handlers.get_next_epoch(epochs, highlight_epoch)
 
-        # # Check if there was an error
-        # if next_epoch["error"]:
-        #     # Return the error
-        #     return next_epoch
-        
         # Refresh the calendar
         shift_cursor_position(lines_up=14, lines_down=0)
         return get_user_input_calendar(epochs, next_epoch)
@@ -138,11 +133,6 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         # Get the previous epoch
         previous_epoch = utils.epoch_handlers.get_previous_epoch(epochs, highlight_epoch)
 
-        # # Check if there was an error
-        # if previous_epoch["error"]:
-        #     # Return the error
-        #     return previous_epoch
-        
         # Refresh the calendar
         shift_cursor_position(lines_up=14, lines_down=0)
         return get_user_input_calendar(epochs, previous_epoch)
