@@ -68,12 +68,16 @@ def display_weather_forecast_final(epoch : int, forecast_json):
     # Get the weather symbol
     weather_info = [
         f"{forecast_json['weather'][0]['main']} -- {forecast_json['weather'][0]['description']}",
-        f"{forecast_json['main']['temp_min']} °C- {forecast_json['main']['temp_max']} °C",
+        f"{round(forecast_json['main']['temp_min']-273,2)} °C- {round(forecast_json['main']['temp_max']-273,2)} °C",
         f"{forecast_json['wind']['speed']} km/hr {forecast_json['wind']['deg']}°",
         f"{forecast_json['main']['humidity']}% humidity",
         f"Chances of rain: {forecast_json['pop']}",
     ]
 
-    # Printing the output
+    # Printing the weather forecast
+    print("+"+"-"*40+"+")
     for line_art, line_info in zip(final_symbol, weather_info):
-        print(f"{line_art}   {line_info}")
+        print("|"+f"{line_art}"+f"{line_info}"+" "*(27 -len(line_info))+"|")
+    print("+"+"-"*40+"+")
+        
+    
