@@ -4,7 +4,7 @@ import requests
 # Importing the json library
 import json
 
-# Temporary sample API response
+# Temporary sample API response for testing (saves API calls)
 sample_res_json = {
   "cod": "200",
   "message": 0,
@@ -179,7 +179,7 @@ sample_res_json = {
   }
 }
 
-def get_lat_lon_forecast(city_name, API_KEY):
+def get_city_forecast(city_name, API_KEY):
     """
     Defining a function to return the response JSON.
 

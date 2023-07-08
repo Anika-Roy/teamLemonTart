@@ -34,7 +34,7 @@ def main():
             return
 
         # API call to get the forecast
-        forecast_json = server.handle_forecast5_api.get_lat_lon_forecast(city_name["city_name"], API_KEY)
+        forecast_json = server.handle_forecast5_api.get_city_forecast(city_name["city_name"], API_KEY)
         # print(forecast_json)
         # Checking if the forecast is valid
         # if forecast_json["cod"] != 200:

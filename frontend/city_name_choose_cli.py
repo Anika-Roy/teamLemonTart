@@ -18,7 +18,8 @@ class MyCompleter(Completer):
 
 def return_city_name():
     """
-    Returns the name of the city using autocomplete
+    Returns the name of the city either what was typed or using a drop-down menu 
+    consisting of a limited number of cities
 
     Arguments:
         No arguments needed
@@ -33,12 +34,6 @@ def return_city_name():
     # Getting the city name from the user
     city_name = session.prompt("Enter a City name: ")
 
-    # Error handling
-    if city_name in CITY_LIST:
-        # Returning the city name
-        return {"error": False, "city_name": city_name}
-        
-    else:
-        # Returning a json with error : False
-        return {"error": False, "city_name": city_name}
+    # return the obtained city name
+    return {"error": False, "city_name": city_name}
     
