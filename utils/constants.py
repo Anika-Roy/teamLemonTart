@@ -55,13 +55,6 @@ CITY_LIST = [
     "Shanghai"
 ]
 
-# List of cities supported by OpenWeatherAPI and their names
-# CITY_LIST = [
-#     "London",
-#     "Paris",
-#     "New York"
-# ]
-
 # List of symbols to pretty print for weather conditions
 # Credits to : https://github.com/chubin/wttr.in
 WEATHER_SYMBOL = {

@@ -58,7 +58,7 @@ def get_calendar_from_epochs(epochs : list, highlight_epoch : int):
     # Create a calendar object
     cal = calendar.TextCalendar()
 
-    # To Change color of the highligh_date cell
+    # To Change color of the highlight_date cell
 
     # Create a list of the calendar lines
     calendar_lines = cal.formatmonth(highlight_year, highlight_month).split("\n")
@@ -78,8 +78,6 @@ def get_calendar_from_epochs(epochs : list, highlight_epoch : int):
     calendar_text = "\n".join(calendar_lines)
 
     # Get the highlighted date 
-
-
     return {"error": False, "message": "All OK.", "calendar": calendar_text}
 
 def get_user_input_calendar(epochs : list, highlight_epoch : int):
@@ -146,77 +144,3 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         shift_cursor_position(up=14, down=0, left=0, right=0)
         return get_user_input_calendar(epochs, previous_epoch)
     
-def get_normal_user_input(epochs : list, highlight_epoch : int):
-    """
-    Prints the calendar and highlights the selected epoch. If the user
-    enter "+" then it will move the highlighted epoch to the next epoch.
-    If the user enters "-" then it will move the highlighted epoch to
-    the previous epoch.
-
-    Then the user can type in "done" to select the highlighted epoch.
-
-    Arguments:
-        epochs (list): A list of epoch timestamps.
-        highlight_epoch (int): The date to highlight.
- 
-    """
-    while (True):
-        # Get the calendar from the epochs
-        calendar = get_calendar_from_epochs(epochs, highlight_epoch)
-
-        # Check if there was an error
-        if calendar["error"]:
-            # Return the error
-            return calendar
-        
-        # Print the calendar
-        click.echo(calendar["calendar"])
-
-        # Get the user input
-        user_input = click.prompt("Please enter the epoch to select or enter '+' or '-' to move the highlighted epoch or enter 'done' to select the highlighted epoch.")
-
-        # Check if the user wants to quit
-        if user_input == "done":
-            # Return the highlight_epoch
-            return highlight_epoch
-        
-        # Check if the user wants to go to the next epoch
-        if user_input == "+":
-            # Get the next epoch
-            next_epoch = utils.epoch_handlers.get_next_epoch(epochs, highlight_epoch)
-
-            # Check if there was an error
-            if next_epoch["error"]:
-                # Return the error
-                return next_epoch
-            
-            # Refresh the calendar
-            highlight_epoch = next_epoch["epoch"]
-            continue
-        
-        # Check if the user wants to go to the previous epoch
-        if user_input == "-":
-            # Get the previous epoch
-            previous_epoch = utils.epoch_handlers.get_previous_epoch(epochs, highlight_epoch)
-
-            # Check if there was an error
-            if previous_epoch["error"]:
-                # Return the error
-                return previous_epoch
-            
-            # Refresh the calendar
-            highlight_epoch = previous_epoch["epoch"]
-            continue
-        
-        # Check if the user wants to select the epoch
-        if user_input.isnumeric():
-            # Check if the epoch is present in the epochs
-            if int(user_input) in epochs:
-                # Return the epoch
-                return int(user_input)
-            else:
-                # Return an error
-                return {"error": True, "message": "The epoch is not present in the epochs list."}
-        
-        # Return an error
-        return {"error": True, "message": "The user input is not valid."}

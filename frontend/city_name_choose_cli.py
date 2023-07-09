@@ -1,12 +1,12 @@
-# Import the list of cities
+# Import the hardcoded list of cities
 from utils.constants import CITY_LIST
 from prompt_toolkit import PromptSession
 from prompt_toolkit.completion import Completer, Completion
 
-# Define your custom completer
+# Define custom completer
 class MyCompleter(Completer):
     def get_completions(self, document, complete_event):
-        # Implement your logic to provide completions
+        # Implement logic to provide completions
         completions = CITY_LIST
         word_before_cursor = document.get_word_before_cursor()
 
@@ -28,12 +28,16 @@ def return_city_name():
         string: The name of the city
     """
 
-    # Create a PromptSession with the custom completer
-    session = PromptSession(completer=MyCompleter())
+    try:
+        # Create a PromptSession with the custom completer
+        session = PromptSession(completer=MyCompleter())
 
-    # Getting the city name from the user
-    city_name = session.prompt("Enter a City name: ")
+        # Getting the city name from the user
+        city_name = session.prompt("Enter a City name: ")
 
-    # return the obtained city name
-    return {"error": False, "city_name": city_name}
+        # return the obtained city name
+        return {"error": False, "city_name": city_name}
+    except:
+        return {"error": True, "message": "Error in getting the city name"}
+
     

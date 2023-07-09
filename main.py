@@ -21,45 +21,73 @@ import datetime
 import os
 API_KEY = os.getenv("OPENWEATHERMAP_API_KEY")
 
-# TODO : Add error checks everywhere
 def main():
 
     try:
         # Ask the user for the city name
-        city_name=frontend.city_name_choose_cli.return_city_name()
-        
-        # Checking if the city_name is valid
-        if city_name["error"]:
-            print(city_name["message"])
-            return
-
+        city_name = frontend.city_name_choose_cli.return_city_name()
+        if city_name.get("error"):
+            raise Exception(city_name.get("message"))
+    except Exception as e:
+        print("Error in city_name_choose_cli.return_city_name():", str(e))
+        print("Please try again:)")
+        return
+ 
+    try:
         # API call to get the forecast
-        forecast_json = server.handle_forecast5_api.get_city_forecast(city_name["city_name"], API_KEY)
-        # print(forecast_json)
-        # Checking if the forecast is valid
-        # if forecast_json["cod"] != 200:
-        #     print("Error with OpenWeatherMap API : ", forecast_json["message"])
-        #     return
+        forecast_json = server.handle_forecast5_api.get_city_forecast(city_name.get("city_name"), API_KEY)
+        if forecast_json.get("cod") != '200':
+            raise Exception("Error with OpenWeatherMap API: " + forecast_json.get("message"))
+    except Exception as e:
+        print("Error in server.handle_forecast5_api.get_city_forecast():", str(e))
+        print("Please try again:)")
+        return
 
+    try:
         # Get the epochs from the forecast
         epochs = server.handle_forecast5_api.get_epochs_from_forecast(forecast_json)
+    except Exception as e:
+        print("Error in server.handle_forecast5_api.get_epochs_from_forecast():", str(e))
+        print("Please try again:)")
+        return
 
+    try:
         # Get datetime from every epoch
         unique_date_epochs = utils.epoch_handlers.get_unique_date_epoch(epochs)
+    except Exception as e:
+        print("Error in utils.epoch_handlers.get_unique_date_epoch():", str(e))
+        print("Please try again:)")
+        return
 
+    try:
         # Send the datetime to the calendar handler and get the date
         selected_date = frontend.interactive_calendar_cli.get_user_input_calendar(unique_date_epochs, None)
+    except Exception as e:
+        print("Error in frontend.interactive_calendar_cli.get_user_input_calendar():", str(e))
+        print("Please try again:)")
+        return
 
+    try:
         # Get all epochs for the selected date
         selected_date_epochs = utils.epoch_handlers.get_epochs_with_date(epochs, selected_date)
+    except Exception as e:
+        print("Error in utils.epoch_handlers.get_epochs_with_date():", str(e))
+        print("Please try again:)")
+        return
 
+    try:
         # Ask the user for the time
         selected_time = frontend.choose_time_cli.ask_for_preferred_time(selected_date_epochs)
-        # print(selected_time)
+    except Exception as e:
+        print("Error in frontend.choose_time_cli.ask_for_preferred_time():", str(e))
+        print("Please try again:)")
+        return
+
+    try:
         # Display the final weather forecast
         frontend.display_forecast_cli.display_weather_forecast_final(selected_time, forecast_json)
-    
-    except:
+    except Exception as e:
+        print("Error in frontend.display_forecast_cli.display_weather_forecast_final():", str(e))
         print("Please try again:)")
         return
 
