@@ -25,7 +25,7 @@ def return_city_name():
         No arguments needed
 
     Returns:
-        string: The name of the city
+        json object containing the error status and the city name
     """
 
     try:
