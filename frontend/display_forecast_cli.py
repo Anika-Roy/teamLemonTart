@@ -1,5 +1,5 @@
 # Import the WEATHER_SYMBOL map from constant.py
-from frontend.frontend_symbols import WEATHER_SYMBOL, ICON_CODE_MAPPING
+import utils.constants as constants
 
 def get_weather_symbol(weather_icon : int):
     """
@@ -20,11 +20,11 @@ def get_weather_symbol(weather_icon : int):
     key_found = False
 
     # Iterating over the ICON_CODE_MAPPING map
-    for icon in ICON_CODE_MAPPING:
+    for icon in constants.ICON_CODE_MAPPING:
         # Checking if the weather_icon is in the key
         if weather_icon == icon:
             # Assigning the weather symbol
-            weather_symbol = WEATHER_SYMBOL[ICON_CODE_MAPPING[icon]]
+            weather_symbol = constants.WEATHER_SYMBOL[constants.ICON_CODE_MAPPING[icon]]
 
             # Assigning the key_found
             key_found = True

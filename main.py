@@ -52,7 +52,7 @@ def main():
         return
 
     try:
-        # Get datetime from every epoch
+        # Get unique date epochs for available dates
         unique_date_epochs = utils.epoch_handlers.get_unique_date_epoch(epochs)
     except Exception as e:
         print("Error in utils.epoch_handlers.get_unique_date_epoch():", str(e))
@@ -60,7 +60,7 @@ def main():
         return
 
     try:
-        # Send the datetime to the calendar handler and get the date
+        # Send the available dates to the calendar handler and get the final selected date
         selected_date = frontend.interactive_calendar_cli.get_user_input_calendar(unique_date_epochs, None)
     except Exception as e:
         print("Error in frontend.interactive_calendar_cli.get_user_input_calendar():", str(e))

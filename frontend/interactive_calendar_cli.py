@@ -24,7 +24,7 @@ def shift_cursor_position(up=0, down=0, left=0, right=0):
 def get_calendar_from_epochs(epochs : list, highlight_epoch : int):
     """
     This returns a calendar object that represents the
-    calendar for the given epochs.
+    calendar for the given epochs and the highlighted epoch.
 
     Arguments:
         epochs (list): A list of epoch timestamps.
@@ -83,9 +83,9 @@ def get_calendar_from_epochs(epochs : list, highlight_epoch : int):
 def get_user_input_calendar(epochs : list, highlight_epoch : int):
     """
     Refreshes the terminal to display the calendar and highlights the 
-    selected epoch. If the user clicks on the right arrow key (If present), 
+    selected epoch. If the user clicks on the right arrow key, 
     the calendar is refreshed to the epoch present after the highlighted
-    epoch. If the user clicks on the left arrow key, the calendar is
+    epoch(If present). If the user clicks on the left arrow key, the calendar is
     refreshed to the epoch present before the highlighted epoch (If 
     present).
 
@@ -99,11 +99,11 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
 
     shift_cursor_position(up=0, down=1, left=0, right=0)
     click.echo("Please press the arrow keys to navigate the calendar.")
-    click.echo("Press 's' to Select and move forward.")
+    click.echo("Press 's' to Select and Continue.")
 
     shift_cursor_position(up=0, down=2, left=0, right=0)
 
-    # Set the highlight_epoch to first epoch if it is None
+    # Set the first epoch to highlight if it is None
     if highlight_epoch == None:
         highlight_epoch = epochs[0]
 

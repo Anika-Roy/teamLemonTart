@@ -2,8 +2,7 @@ import datetime
 
 def get_unique_date_epoch(epochs : list):
     """
-    Filters the epochs list to only the epochs with 
-    a unique date.
+    Returns a list of unique date epochs from the list of epochs.
 
     Arguments:
         epochs (list): The list of epochs.

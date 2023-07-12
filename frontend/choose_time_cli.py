@@ -1,8 +1,8 @@
-# sample_input_list=[1688018400,1687996800,1687986000]
 from pprint import pprint
 import inquirer
 import datetime
 
+# sample_input_list=[1688018400,1687996800,1687986000]--> for testing
 
 
 def get_times_from_epochs(epochs : list):
@@ -58,12 +58,7 @@ def ask_for_preferred_time(epochs : list):
     ]
 
     answers = inquirer.prompt(questions)
-    # pprint(type(answers))
 
     final_epoch=find_epoch_with_chosen_time(answers, epochs)
-    # print(final_epoch)
-    # print(type(final_epoch))
 
     return final_epoch
-
-# ask_for_preferred_time(sample_input_list)
