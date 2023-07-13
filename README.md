@@ -5,7 +5,11 @@
 
 ## A Short Demo:)
 
-https://github.com/Fastest-Coder-First/teamLemonTart/assets/102136135/df98a72d-b6ad-457e-a2b1-c1ce6a63b254
+
+
+https://github.com/Anika-Roy/teamLemonTart/assets/102136135/6be9ae61-9725-49b8-a954-88849e6aa3fb
+
+
 
 
 ## Problem Statement
@@ -13,6 +17,19 @@ https://github.com/Fastest-Coder-First/teamLemonTart/assets/102136135/df98a72d-b
 Create a command-line tool that accepts a city's name and returns the weather forecast. Leverage Open Weather Map API to get the weather forecast.
 ![Screenshot from 2023-06-24 09-31-41](https://github.com/Fastest-Coder-First/teamLemonTart/assets/102136135/041b4c28-5a69-4c74-9b3d-3d89984356c4)
 
+## How to run:
+1. Setup a conda/pip environment using the requirements.txt file provided
+2. Activate the environment and cd into the project directory
+3. run main.py using
+     ```
+     python3 main.py
+     ```
+5. Type out the name of the required city
+6. If the city is amongst the hardcoded cities, it can be found in the drop-down (case sensitive, first letter should be capital). Otherwise, the full city name must be typed out to get a valid output
+7. Use the left and right arrow keys to navigate the calendar shown. The forecast for only the next five days will be made available.
+8. Use the up and down arrow keys to select the required time
+9. And finally, you can see the required output!!
+    
 # Judging critrions satisfied
 ## Functionality and Completeness
 > This section lists the features and highlights the points adhering to the judging criteria of `Functionality and Completeness`.
