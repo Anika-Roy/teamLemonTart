@@ -1,5 +1,5 @@
 # Weather Forecasting Tool
-## Team Details
+## Team Details:
 - [Anika Roy](https://www.linkedin.com/in/anika-roy-210379223/)
 - [Ujjwal Shekhar](https://www.linkedin.com/in/ujjwal-shekhar-iiith/)
 
