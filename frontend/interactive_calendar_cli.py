@@ -97,7 +97,7 @@ def get_user_input_calendar(epochs : list, highlight_epoch : int):
         int: The epoch selected by the user.
     """
 
-    shift_cursor_position(up=0, down=1, left=0, right=0)
+    shift_cursor_position(up=0, down=2, left=0, right=0)
     click.echo("Please press the arrow keys to navigate the calendar.")
     click.echo("Press 's' to Select and Continue.")
 
