@@ -20,7 +20,8 @@ Create a command-line tool that accepts a city's name and returns the weather fo
 ## How to run:
 1. Setup a conda/pip environment using the requirements.txt file provided
 2. Activate the environment and cd into the project directory
-3. run main.py using
+3. Setup a .env file in the root directory and set your OpenWeatherMap API key to the variable `OPENWEATHERMAP_API_KEY`
+4. run main.py using
      ```
      python3 main.py
      ```
