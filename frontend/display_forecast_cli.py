@@ -40,7 +40,7 @@ def get_weather_symbol(weather_icon : int):
 
     if (not key_found):
         # Assigning the weather symbol
-        json_to_return["weather_symbol"] = WEATHER_SYMBOL["default"]
+        json_to_return["weather_symbol"] = constants.WEATHER_SYMBOL["default"]
         json_to_return["error"] = True
 
     # Returning the weather symbol
